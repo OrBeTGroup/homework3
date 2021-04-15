@@ -66,7 +66,7 @@ dm = DataProcHiveOperator(
             """,
     job_name = username + '_{{executiondate_date.year}}_dm_traffic_{{params.job_suffix}}',
     params = {"job_suffix": randint(0, 100000)},
-    cluster+name = 'cluster-dataproc',
+    cluster_name = 'cluster-dataproc',
     region = 'europe-west3',
 )
 ods >> dm
