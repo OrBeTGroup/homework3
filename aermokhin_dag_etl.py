@@ -1,4 +1,4 @@
-from datetime import timedata, datatime
+from datetime import timedelta, datatime
 from random import randint
 
 from airflow import DAG
