@@ -20,8 +20,8 @@ dag = DAG(
 )
 tasks = ('traffic', 'billing', 'issue', 'payment')
 ods = []
-for task in tsaks:
-    if tsak == 'traffic':
+for task in tasks:
+    if task == 'traffic':
         query = """
                 insert overwrite table aermokhin.ods_traffic partition (year='{{executiondate_date.year}}')
                 select user_id, cast(from_unixtime(`timestamp` div 1000) as TIMESTAMP), device_id, device_ip_addr, bytes_sent, bytes_received
