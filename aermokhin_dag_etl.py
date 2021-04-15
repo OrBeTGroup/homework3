@@ -57,16 +57,16 @@ for task in tsaks:
     ))
 
 dm = DataProcHiveOperator(
-    task_id = 'dm_traffic',
-    dag = dag,
+    task_id='dm_traffic',
+    dag=dag,
     query = """
             insert overwrite table aermokhin.dm_traffic partition (year = '{{executiondate_date.year}}')
             select user_id, max(bytes_received), min(bytes_received), round(avg(bytes_received)) as avg_traf
                    from aermokhin.ods_traffic where year = {{executiondate_date.year}} group by user_id order by avg_traf;
             """,
-    job_name = username + '_{{executiondate_date.year}}_dm_traffic_{{params.job_suffix}}',
-    params = {"job_suffix": randint(0, 100000)},
-    cluster_name = 'cluster-dataproc',
+    job_name=username + '_{{executiondate_date.year}}_dm_traffic_{{params.job_suffix}}',
+    params={"job_suffix": randint(0, 100000)},
+    cluster_name='cluster-dataproc',
     region = 'europe-west3',
 )
 ods >> dm
