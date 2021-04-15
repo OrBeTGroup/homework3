@@ -46,7 +46,7 @@ for task in tasks:
                 select user_id, pay_doc_type, pay_doc_num, account, phone, billing_period, cast(pay_date as TIMESTAMP), cast(sum as DECIMAL(10,2))
                 from aermokhin.stg_payment where year(pay_date) = {{executiondate_date.year}};
                 """
-    ods.append(DataProcOperator(
+    ods.append(DataProcHiveOperator(
         task_id = 'ods_'+task,
         dag = dag,
         query = query,
