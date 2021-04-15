@@ -47,13 +47,13 @@ for task in tasks:
                 from aermokhin.stg_payment where year(pay_date) = {{executiondate_date.year}};
                 """
     ods.append(DataProcHiveOperator(
-        task_id = 'ods_'+task,
-        dag = dag,
-        query = query,
-        job_name = username + '_{{executiondate_date.year}}_ods_' + task + '_{{params.job_suffix}}',
-        params = {"job_suffix": randint(0, 100000)},
-        cluster_name = 'cluster-dataproc',
-        region = 'europe-west3',
+        task_id='ods_'+task,
+        dag=dag,
+        query=query,
+        job_name=username + '_{{executiondate_date.year}}_ods_' + task + '_{{params.job_suffix}}',
+        params={"job_suffix": randint(0, 100000)},
+        cluster_name='cluster-dataproc',
+        region='europe-west3',
     ))
 
 dm = DataProcHiveOperator(
