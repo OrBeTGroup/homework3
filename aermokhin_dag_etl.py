@@ -24,8 +24,8 @@ for task in tasks:
     if task == 'traffic':
         query = """
                 insert overwrite table aermokhin.ods_traffic partition (year='{{execution_date.year}}')
-                select user_id, cast(from_unixtime(`timestamp` div 1000) as TIMESTAMP), device_id, device_ip_addr, bytes_sent, bytes_received
-                       from aermokhin.stg_traffic where year(from_unixtime(`timestamp` div 1000))= {{execution_date.year}};
+                select user_id, cast(`timestamp`/1000 as TIMESTAMP), device_id, device_ip_addr, bytes_sent, bytes_received
+                       from aermokhin.stg_traffic where year(FROM_UNIXTIME(cast(`timestamp`/1000 as BIGINT)))= {{execution_date.year}};
                 """
     elif task == 'billing':
         query = """
