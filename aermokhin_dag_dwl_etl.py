@@ -420,7 +420,7 @@ for phase in ('HUBS', 'LINKS', "SATELLITES"):
         all_links_loaded = DummyOperator(task_id="all_linkss_loaded", dag=dag)
     #Load HUB
     elif phase == 'SATELLITES':
-        hubs = get_phase_context(phase)
+        satellites = get_phase_context(phase)
         all_satellites_loaded = DummyOperator(task_id="all_satellites_loaded", dag=dag)
 
 drop_view_payment_one_year = PostgresOperator(
