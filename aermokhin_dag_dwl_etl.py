@@ -426,7 +426,7 @@ for phase in ('HUBS', 'LINKS', "SATELLITES"):
 drop_view_payment_one_year = PostgresOperator(
     task_id='DROP_VIEW_PAYMENT_ONE_YEAR',
     dag=dag, 
-    sql=SQL_CONTEXTS['DROP_VIEW_PAYMENT_ONE_YEAR']
+    sql=SQL_CONTEXT['DROP_VIEW_PAYMENT_ONE_YEAR']
 )
 
 view_payment_one_year >> hubs >> all_hubs_loaded >> links >> all_links_loaded >> satellites >> drop_view_payment_one_year
