@@ -227,7 +227,7 @@ SQL_CONTEXT = {
                          USER_ACCOUNT_PK,
                          USER_PK, ACCOUNT_PK,
                          LOAD_DATE, RECORD_SOURCE
-                     fron records_to_insert
+                     from records_to_insert
                    );
            """,  
            'LINKS_ACCOUNT_BILLING_PAY': """
@@ -250,7 +250,7 @@ SQL_CONTEXT = {
                          ACCOUNT_BILLING_PAY_PK,
                          ACCOUNT_PK, BILLING_PERIOD_PK, PAY_DOC_PK,
                          LOAD_DATE, RECORD_SOURCE
-                     fron records_to_insert
+                     from records_to_insert
                    );
              """},
     'SATELLITES': {
