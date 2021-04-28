@@ -184,7 +184,7 @@ SQL_CONTEXT = {
            'HUB_PAY_DOC': """
                     with row_rank_1 as (
                         select * from (
-                               select PAY_DOC_PK, PAY_DOC__KEY, LOAD_DATE, RECORD_SOURCE, pay_date,
+                               select PAY_DOC_PK, PAY_DOC_KEY, LOAD_DATE, RECORD_SOURCE, pay_date,
                                   row_number() over (
                                      partition by PAY_DOC_PK
                                      order by LOAD_DATE ASC
