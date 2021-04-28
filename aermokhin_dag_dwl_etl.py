@@ -285,7 +285,7 @@ SQL_CONTEXT = {
                       ) as s
                       where latest = 'Y'
                    ),
-                   records_to_insert (
+                   records_to_insert as (
                       select distinct
                          e.USER_PK, USER_HASHDIFF,
                          e.phone,
@@ -342,7 +342,7 @@ SQL_CONTEXT = {
                       ) as s
                       where latest = 'Y'
                    ),
-                   records_to_insert (
+                   records_to_insert as (
                       select distinct
                          e.PAY_DOC_PK, PAY_DOC_HASHDIFF,
                          e.pay_date, a.sum,
