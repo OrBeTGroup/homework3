@@ -417,7 +417,7 @@ for phase in ('HUBS', 'LINKS', "SATELLITES"):
     #Load HUB
     elif phase == 'LINKS':
         links = get_phase_context(phase)
-        all_links_loaded = DummyOperator(task_id="all_linkss_loaded", dag=dag)
+        all_links_loaded = DummyOperator(task_id="all_links_loaded", dag=dag)
     #Load HUB
     elif phase == 'SATELLITES':
         satellites = get_phase_context(phase)
