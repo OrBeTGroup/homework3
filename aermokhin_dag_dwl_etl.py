@@ -8,7 +8,7 @@ from airflow.operators.dummy_operator import DummyOperator
  # SQL Script definition
 
 SQL_CONTEXT = {
-    'LOAD VIEW PAYMENT_ONE_YEAR': """
+    'LOAD_VIEW_PAYMENT_ONE_YEAR': """
         create or replace view aermokhin.view_payment_{{ execution_date.year }} as (
           with staging as (
             with derived_columns as (
