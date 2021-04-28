@@ -24,7 +24,7 @@ SQL_CONTEXT = {
                 user_id::varchar as USER_KEY,
                 account::varchar as ACCOUNT_KEY,
                 billing_period::varchar as BILLING_PERIOD_KEY,
-                pay_doc_type::varchat as PAY_DOC_TYPE_KEY,
+                pay_doc_type::varchar as PAY_DOC_TYPE_KEY,
                 pay_doc_num::varchar as PAY_DOC_NUM_KEY,
                 'PAYMENT - DATA LAKE'::varchar as RECORD_SOURCE
               from aermokhin.ods_payment
