@@ -199,7 +199,7 @@ SQL_CONTEXT = {
                               on a.PAY_DOC_PK = d.PAY_DOC_PK
                          where d.PAY_DOC_PK is NULL
                     )
-                    insert into aermokhin.dds_hub_account (PAY_DOC_PK, PAY_DOC_TYPE_KEY, PAY_DOC_NUM_KEY, LOAD_DATE, RECORD_SOURCE)
+                    insert into aermokhin.dds_hub_pay_doc (PAY_DOC_PK, PAY_DOC_TYPE_KEY, PAY_DOC_NUM_KEY, LOAD_DATE, RECORD_SOURCE)
                     (
                          select PAY_DOC_PK, PAY_DOC_TYPE_KEY, PAY_DOC_NUM_KEY, LOAD_DATE, RECORD_SOURCE
                          from records_to_insert
