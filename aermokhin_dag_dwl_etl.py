@@ -373,7 +373,7 @@ SQL_CONTEXT = {
 }
 
 def get_phase_context(task_phase):
-    task = []
+    tasks = []
     for task in SQL_CONTEXT[task_phase]:
         query = SQL_CONTEXT[task_phase] [task]
         tasks.append(PostgresOperator(
