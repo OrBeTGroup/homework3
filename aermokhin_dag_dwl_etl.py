@@ -304,7 +304,7 @@ SQL_CONTEXT = {
                         LOAD_DATE, RECORD_SOURCE)
                     (
                         select
-                           USER_PK, USER_HASDIFF,
+                           USER_PK, USER_HASHDIFF,
                            phone,
                            EFFECTIVE_FROM,
                            LOAD_DATE, RECORD_SOURCE
@@ -361,7 +361,7 @@ SQL_CONTEXT = {
                         LOAD_DATE, RECORD_SOURCE)
                     (
                         select
-                           PAY_DOC_PK, PAY_DOC_HASDIFF,
+                           PAY_DOC_PK, PAY_DOC_HASHDIFF,
                            pay_date, sum,
                            EFFECTIVE_FROM,
                            LOAD_DATE, RECORD_SOURCE
