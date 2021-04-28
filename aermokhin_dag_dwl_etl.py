@@ -95,7 +95,7 @@ SQL_CONTEXT = {
                 USER_ACCOUNT_PK,
                 ACCOUNT_BILLING_PAY_PK,
                 USER_HASHDIFF,
-                PAY_DOC_HASHDIFF,
+                PAY_DOC_HASHDIFF
               from hashed_columns
             )
             select * from columns_to select
