@@ -287,13 +287,13 @@ SQL_CONTEXT = {
                    ),
                    records_to_insert as (
                       select distinct
-                         e.USER_PK, USER_HASHDIFF,
+                         e.USER_PK, e.USER_HASHDIFF,
                          e.phone,
                          e.EFFECTIVE_FROM,
                          e.LOAD_DATE, e.RECORD_SOURCE
                       from source_data as e
                       left join latest_records
-                      on latest_records.HASHDIFF = e.HASHDIFF and
+                      on latest_records.USER_HASHDIFF = e.USER_HASHDIFF and
                          latest_records.USER_PK = e.USER_PK
                       where latest_records.USER_HASHDIFF is null
                     )
@@ -344,13 +344,13 @@ SQL_CONTEXT = {
                    ),
                    records_to_insert as (
                       select distinct
-                         e.PAY_DOC_PK, PAY_DOC_HASHDIFF,
-                         e.pay_date, a.sum,
+                         e.PAY_DOC_PK, e.PAY_DOC_HASHDIFF,
+                         e.pay_date, e.sum,
                          e.EFFECTIVE_FROM,
                          e.LOAD_DATE, e.RECORD_SOURCE
                       from source_data as e
                       left join latest_records
-                      on latest_records.HASHDIFF = e.HASHDIFF and
+                      on latest_records.PAY_DOC_HASHDIFF = e.PAY_DOC_HASHDIFF and
                          latest_records.PAY_DOC_PK = e.PAY_DOC_PK
                       where latest_records.PAY_DOC_HASHDIFF is null
                     )
