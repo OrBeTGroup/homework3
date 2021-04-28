@@ -212,7 +212,7 @@ SQL_CONTEXT = {
                       select distinct
                          stg.USER_ACCOUNT_PK,
                          stg.USER_PK, stg.ACCOUNT_PK,
-                         stg.LOAD_FDATE, stg,RECORD_SOURCE
+                         stg.LOAD_DATE, stg,RECORD_SOURCE
                       from aermokhin.view_payment_{{ execution_date.year }} as stg
                       left join aermokhin.dds_link_user_account as tgt
                       on stg.USER_ACCOUNT_PK = tgt.USER_ACCOUNT_PK
@@ -235,7 +235,7 @@ SQL_CONTEXT = {
                       select distinct
                          stg.ACCOUNT_BILLING_PAY_PK,
                          stg.ACCOUNT_PK, stg.BILLING_PERIOD_PK, stg.PAY_DOC_PK,
-                         stg.LOAD_FDATE, stg,RECORD_SOURCE
+                         stg.LOAD_DATE, stg,RECORD_SOURCE
                       from aermokhin.view_payment_{{ execution_date.year }} as stg
                       left join aermokhin.dds_link_account_billing_pay as tgt
                       on stg.ACCOUNT_BILLING_PAY_PK = tgt.ACCOUNT_BILLING_PAY_PK
