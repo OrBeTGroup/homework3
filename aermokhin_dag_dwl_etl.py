@@ -151,7 +151,7 @@ SQL_CONTEXT = {
                               on a.ACCOUNT_PK = d.ACCOUNT_PK
                          where d.ACCOUNT_PK is NULL
                     )
-                    insert into aermokhin.dds_hub_account (ACCOUNT_PK, ACOOUNT_KEY, LOAD_DATE, RECORD_SOURCE)
+                    insert into aermokhin.dds_hub_account (ACCOUNT_PK, ACCOUNT_KEY, LOAD_DATE, RECORD_SOURCE)
                     (
                          select ACCOUNT_PK, ACCOUNT_KEY, LOAD_DATE, RECORD_SOURCE
                          from records_to_insert
