@@ -263,7 +263,7 @@ SQL_CONTEXT = {
                          LOAD_DATE, RECORD_SOURCE
                       from aermokhin.view_payment_{{ execution_date.year }}
                    ),
-                   update_records_as (
+                   update_records as (
                       select
                          a.USER_PK, a.USER_HASHDIFF,
                          a.phone,
@@ -320,7 +320,7 @@ SQL_CONTEXT = {
                          LOAD_DATE, RECORD_SOURCE
                       from aermokhin.view_payment_{{ execution_date.year }}
                    ),
-                   update_records_as (
+                   update_records as (
                       select
                          a.PAY_DOC_PK, a.PAY_DOC_HASHDIFF,
                          a.pay_date, a.sum,
