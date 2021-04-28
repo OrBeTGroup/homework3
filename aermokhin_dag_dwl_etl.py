@@ -184,7 +184,7 @@ SQL_CONTEXT = {
            'HUB_PAY_DOC': """
                     with row_rank_1 as (
                         select * from (
-                               select PAY_DOC_PK, PAY_DOC_KEY, LOAD_DATE, RECORD_SOURCE, pay_date,
+                               select PAY_DOC_PK, PAY_DOC_TYPE_KEY, PAY_DOC_NUM_KEY, LOAD_DATE, RECORD_SOURCE, pay_date,
                                   row_number() over (
                                      partition by PAY_DOC_PK
                                      order by LOAD_DATE ASC
@@ -193,15 +193,15 @@ SQL_CONTEXT = {
                          ) as h where row_num = 1
                     ),
                     records_to_insert as (
-                         select a.PAY_DOC_PK, a.PAY_DOC_KEY, a.LOAD_DATE, a.RECORD_SOURCE
+                         select a.PAY_DOC_PK, a.PAY_DOC_TYPE_KEY, a.PAY_DOC_NUM_KEY, a.LOAD_DATE, a.RECORD_SOURCE
                          from row_rank_1 as a
                          left join aermokhin.dds_hub_pay_doc as d
                               on a.PAY_DOC_PK = d.PAY_DOC_PK
                          where d.PAY_DOC_PK is NULL
                     )
-                    insert into aermokhin.dds_hub_account (PAY_DOC_PK, PAY_DOC_KEY, LOAD_DATE, RECORD_SOURCE)
+                    insert into aermokhin.dds_hub_account (PAY_DOC_PK, PAY_DOC_TYPE_KEY, PAY_DOC_NUM_KEY, LOAD_DATE, RECORD_SOURCE)
                     (
-                         select PAY_DOC_PK, PAY_DOC_KEY, LOAD_DATE, RECORD_SOURCE
+                         select PAY_DOC_PK, PAY_DOC_TYPE_KEY, PAY_DOC_NUM_KEY, LOAD_DATE, RECORD_SOURCE
                          from records_to_insert
                     );   
            """},
