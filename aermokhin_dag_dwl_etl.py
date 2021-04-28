@@ -34,6 +34,7 @@ SQL_CONTEXT = {
               select
                 user_id,
                 pay_doc_type,
+                pay_doc_num,
                 account,
                 phone,
                 billing_period,
