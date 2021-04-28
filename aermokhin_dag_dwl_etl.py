@@ -98,7 +98,7 @@ SQL_CONTEXT = {
                 PAY_DOC_HASHDIFF
               from hashed_columns
             )
-            select * from columns_to select
+            select * from columns_to_select
           )
           
           select *,
