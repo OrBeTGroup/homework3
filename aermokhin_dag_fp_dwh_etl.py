@@ -1131,9 +1131,9 @@ dag = DAG(
 )
 
 view_payment_one_year = PostgresOperator(
-    task_id = 'LOAD_VIEW_PAYMENT_ONE_YEAR',
+    task_id = 'LOAD_VIEW_ONE_YEAR',
     dag=dag,
-    sql=SQL_CONTEXT['LOAD_VIEW_PAYMENT_ONE_YEAR']
+    sql=SQL_CONTEXT['LOAD_VIEW_ONE_YEAR']
 )
 
 for phase in ('HUBS', 'LINKS', "SATELLITES"):
