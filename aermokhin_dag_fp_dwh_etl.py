@@ -9,7 +9,7 @@ from airflow.operators.dummy_operator import DummyOperator
 
 SQL_CONTEXT = {
            'DROP_VIEW_PAYMENT_ONE_YEAR': """
-                drop view if exists aermokhin.fp_view_issue_{{ execution_date.year }}
+                drop view if exists aermokhin.fp_view_billing_{{ execution_date.year }}
                 
             """
 }
@@ -24,7 +24,7 @@ default_args = {
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 1,
-    'retry_delay': timedelta(seconds=120),
+    'retry_delay': timedelta(seconds=20),
 }
 
 dag = DAG(
