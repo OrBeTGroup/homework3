@@ -1130,7 +1130,7 @@ dag = DAG(
     schedule_interval="0 0 1 1 *",
 )
 
-view_payment_one_year = PostgresOperator(
+view_one_year = PostgresOperator(
     task_id = 'LOAD_VIEWS_ONE_YEAR',
     dag=dag,
     sql=SQL_CONTEXT['LOAD_VIEWS_ONE_YEAR']
