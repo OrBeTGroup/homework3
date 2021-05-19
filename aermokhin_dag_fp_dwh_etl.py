@@ -266,7 +266,7 @@ SQL_CONTEXT = {
                 ISSUE_SERVICE_PK,
                 START_TIME_PK,
                 SERVICE_PK,
-                ISSUE_HASDIFF_PK
+                ISSUE_HASHDIFF_PK
               from hashed_columns
             )
             select * from columns_to_select
@@ -1124,7 +1124,7 @@ default_args = {
 }
 
 dag = DAG(
-    USERNAME + '_dwh_fp_etl_test',
+    USERNAME + '_dwh_fp_etl',
     default_args=default_args,
     description='DWH ETL tasks',
     schedule_interval="0 0 1 1 *",
