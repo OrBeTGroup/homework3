@@ -200,7 +200,7 @@ SQL_CONTEXT = {
                 start_time,
                 end_time,
                 title,
-                descripton,
+                description,
                 service,
                 user_id::varchar as USER_KEY,
                 start_time::varchar as START_TIME_KEY,
@@ -216,7 +216,7 @@ SQL_CONTEXT = {
                 start_time,
                 end_time,
                 title,
-                descripton,
+                description,
                 service,
                 USER_KEY,
                 START_TIME_KEY,
@@ -253,7 +253,7 @@ SQL_CONTEXT = {
                 start_time,
                 end_time,
                 title,
-                descripton,
+                description,
                 service,
                 USER_KEY,
                 START_TIME_KEY,
@@ -849,7 +849,7 @@ SQL_CONTEXT = {
                     (
                         select
                            ISSUE_PK, ISSUE_HASHDIFF,
-                           START_TIME, TITLE, DESCRIPTON,
+                           START_TIME, TITLE, DESCRIPTION,
                            EFFECTIVE_FROM,
                            LOAD_DATE, RECORD_SOURCE
                         from records_to_insert
