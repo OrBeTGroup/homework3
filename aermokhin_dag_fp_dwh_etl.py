@@ -158,7 +158,7 @@ SQL_CONTEXT = {
                   coalesce(nullif(upper(trim(cast(tariff as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(service as varchar))), ''), '^^')
                 ), '^^||^^||^^||^^')) as TEXT) as TARIFF_HASHDIFF_PK
-              from derived_columns                                
+             from derived_columns                                
             ),
             columns_to_select as (
               select
@@ -244,8 +244,8 @@ SQL_CONTEXT = {
                   coalesce(nullif(upper(trim(cast(user_id as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(start_time as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(service as varchar))), ''), '^^')
-                ), '^^||^^||^^||^^')) as TEXT) as ISSUE_HASDIFF_PK               
-              from derived_columns                                
+                ), '^^||^^||^^||^^')) as TEXT) as ISSUE_HASHDIFF_PK
+            from derived_columns                                
             ),
             columns_to_select as (
               select
@@ -266,7 +266,7 @@ SQL_CONTEXT = {
                 ISSUE_SERVICE_PK,
                 START_TIME_PK,
                 SERVICE_PK,
-                ISSUE_HASHDIFF_PK
+                ISSUE_HASDIFF_PK
               from hashed_columns
             )
             select * from columns_to_select
@@ -293,7 +293,7 @@ SQL_CONTEXT = {
                 timestamp::varchar as TIMESTAMP_KEY,
                 device_id::varchar as DEVICE_ID_KEY,
                 'traffic - GCS'::varchar as RECORD_SOURCE
-              from aermokhin.ods_fp_issue
+              from aermokhin.ods_fp_traffic
               where cast(extract('year' from cast(timestamp as timestamp)) as int) = {{ execution_date.year }}
             ),
             hashed_columns as (
@@ -319,8 +319,8 @@ SQL_CONTEXT = {
                   coalesce(nullif(upper(trim(cast(user_id as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(device_id as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(device_ip_addr as varchar))), ''), '^^')
-                ), '^^||^^||^^||^^')) as TEXT) as DEVICE_HASHDIFF_PK               
-              from derived_columns                                
+                ), '^^||^^||^^||^^')) as TEXT) as DEVICE_HASHDIFF_PK
+            from derived_columns                                
             ),
             columns_to_select as (
               select
