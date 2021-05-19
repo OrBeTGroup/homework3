@@ -460,7 +460,7 @@ SQL_CONTEXT = {
                          ) as h where row_num = 1
                     ),
                     records_to_insert as (
-                         select a.TARIFF_PK, a.TARIF_KEY, a.LOAD_DATE, a.RECORD_SOURCE
+                         select a.TARIFF_PK, a.TARIFF_KEY, a.LOAD_DATE, a.RECORD_SOURCE
                          from row_rank_1 as a
                          left join aermokhin.dds_fp_hub_tariff as d
                               on a.TARIFF_PK = d.TARIFF_PK
@@ -488,7 +488,7 @@ SQL_CONTEXT = {
                          from row_rank_1 as a
                          left join aermokhin.dds_fp_hub_issue as d
                               on a.ISSUE_PK = d.ISSUE_PK
-                         where d.ISSUE is NULL
+                         where d.ISSUE_PK is NULL
                     )
                     insert into aermokhin.dds_fp_hub_issue (ISSUE_PK, ISSUE_KEY, LOAD_DATE, RECORD_SOURCE)
                     (
@@ -512,7 +512,7 @@ SQL_CONTEXT = {
                          from row_rank_1 as a
                          left join aermokhin.dds_fp_hub_device as d
                               on a.DEVICE_PK = d.DEVICE_PK
-                         where d.DEVICE is NULL
+                         where d.DEVICE_PK is NULL
                     )
                     insert into aermokhin.dds_fp_hub_device (DEVICE_PK, DEVICE_KEY, LOAD_DATE, RECORD_SOURCE)
                     (
