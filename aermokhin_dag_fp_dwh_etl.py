@@ -481,7 +481,7 @@ SQL_CONTEXT = {
                                      order by LOAD_DATE ASC
                                   ) as row_num
                                from aermokhin.fp_view_issue_{{ execution_date.year }}
-                         ) as h where row_num = 1_
+                         ) as h where row_num = 1
                     ),
                     records_to_insert as (
                          select a.ISSUE_PK, a.ISSUE_KEY, a.LOAD_DATE, a.RECORD_SOURCE
@@ -505,7 +505,7 @@ SQL_CONTEXT = {
                                      order by LOAD_DATE ASC
                                   ) as row_num
                                from aermokhin.fp_view_traffic_{{ execution_date.year }}
-                         ) as h where row_num = 1_
+                         ) as h where row_num = 1
                     ),
                     records_to_insert as (
                          select a.DEVICE_PK, a.DEVICE_KEY, a.LOAD_DATE, a.RECORD_SOURCE
