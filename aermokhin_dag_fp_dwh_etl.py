@@ -9,7 +9,7 @@ from airflow.operators.dummy_operator import DummyOperator
 
 SQL_CONTEXT = {
            'DROP_VIEW_PAYMENT_ONE_YEAR': """
-                drop view if exists aermokhin.fp_view_billing_{{ execution_date.year }}
+                drop view if exists aermokhin.fp_view_billing_{{ execution_date.year }},  aermokhin.fp_view_traffic_{{ execution_date.year }}
                 
             """
 }
