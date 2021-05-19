@@ -538,7 +538,7 @@ SQL_CONTEXT = {
                               on a.SERVICE_PK = d.SERVICE_PK
                          where d.SERVICE_PK is NULL
                     )
-                    insert into aermokhin.dds_fp_hub_service (USER_PK, USER_KEY, LOAD_DATE, RECORD_SOURCE)
+                    insert into aermokhin.dds_fp_hub_service (SERVICE_PK, SERVICE_KEY, LOAD_DATE, RECORD_SOURCE)
                     (
                          select SERVICE_PK, SERVICE_KEY, LOAD_DATE, RECORD_SOURCE
                          from records_to_insert
