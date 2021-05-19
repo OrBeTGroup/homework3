@@ -319,7 +319,7 @@ SQL_CONTEXT = {
                   coalesce(nullif(upper(trim(cast(user_id as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(device_id as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(device_ip_addr as varchar))), ''), '^^')
-                ), '^^||^^||^^||^^')) as TEXT) as DEVICE_HASHDIFF_PK               
+                ), '^^||^^||^^||^^')) as TEXT) as DEVICE_HASHDIFF_PK           
               from derived_columns                                
             ),
             columns_to_select as (
