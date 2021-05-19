@@ -309,7 +309,7 @@ SQL_CONTEXT = {
                 DEVICE_KEY,
                 RECORD_SOURCE,
                 cast((md5(nullif(upper(trim(cast(user_id as varchar))), ''))) as TEXT) as USER_PK,
-                cast((md5(nullif(upper(trim(cast(timerequet as varchar))), ''))) as TEXT) as TIMEREQUEST_PK,
+                cast((md5(nullif(upper(trim(cast(timerequest as varchar))), ''))) as TEXT) as TIMEREQUEST_PK,
                 cast((md5(nullif(upper(trim(cast(device_id as varchar))), ''))) as TEXT) as DEVICE_PK,
                 cast(md5(nullif(concat_ws('||',
                   coalesce(nullif(upper(trim(cast(user_id as varchar))), ''), '^^'),
