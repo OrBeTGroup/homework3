@@ -284,32 +284,32 @@ SQL_CONTEXT = {
             with derived_columns as (
               select
                 user_id,
-                timestamp,
+                timerequest,
                 device_id,
                 device_ip_addr,
                 bytes_sent,
                 bytes_recive,
                 user_id::varchar as USER_KEY,
-                timestamp::varchar as TIMESTAMP_KEY,
+                timerequest::varchar as TIMEREQUEST_KEY,
                 device_id::varchar as DEVICE_ID_KEY,
                 'traffic - GCS'::varchar as RECORD_SOURCE
               from aermokhin.ods_fp_traffic
-              where cast(extract('year' from cast(timestamp as timestamp)) as int) = {{ execution_date.year }}
+              where cast(extract('year' from cast(timerequest as timestamp)) as int) = {{ execution_date.year }}
             ),
             hashed_columns as (
               select
                 user_id,
-                timestamp,
+                timerequest,
                 device_id,
                 device_ip_addr,
                 bytes_sent,
                 bytes_recive,
                 USER_KEY,
-                TIMESTAMP_KEY,
+                TIMEREQUEST_KEY,
                 DEVICE_KEY,
                 RECORD_SOURCE,
                 cast((md5(nullif(upper(trim(cast(user_id as varchar))), ''))) as TEXT) as USER_PK,
-                cast((md5(nullif(upper(trim(cast(timestamp as varchar))), ''))) as TEXT) as TIMESTAMP_PK,
+                cast((md5(nullif(upper(trim(cast(timerequet as varchar))), ''))) as TEXT) as TIMEREQUEST_PK,
                 cast((md5(nullif(upper(trim(cast(device_id as varchar))), ''))) as TEXT) as DEVICE_PK,
                 cast(md5(nullif(concat_ws('||',
                   coalesce(nullif(upper(trim(cast(user_id as varchar))), ''), '^^'),
@@ -325,17 +325,17 @@ SQL_CONTEXT = {
             columns_to_select as (
               select
                 user_id,
-                timestamp,
+                timerequest,
                 device_id,
                 device_ip_addr,
                 bytes_sent,
                 bytes_recive,
                 USER_KEY,
-                TIMESTAMP_KEY,
+                TIMEREQUEST_KEY,
                 DEVICE_KEY,
                 RECORD_SOURCE,
                 USER_PK,
-                TIMESTAMP_PK,
+                TIMEREQUEST_PK,
                 DEVICE_PK,
                 USER_DEVICE_PK
               from hashed_columns
@@ -345,7 +345,7 @@ SQL_CONTEXT = {
           
           select *,
               '{{execution_date}}'::timestamp as LOAD_DATE,
-              timestamp as EFFECTIVE_FROM
+              timerequest as EFFECTIVE_FROM
           from staging
         );
 
@@ -499,7 +499,7 @@ SQL_CONTEXT = {
              'HUB_DEVICE': """
                     with row_rank_1 as (
                         select * from (
-                               select DEVICE_PK, DEVICE_KEY, LOAD_DATE, RECORD_SOURCE, timestamp,
+                               select DEVICE_PK, DEVICE_KEY, LOAD_DATE, RECORD_SOURCE, timerequest,
                                   row_number() over (
                                      partition by DEVICE_PK
                                      order by LOAD_DATE ASC
@@ -917,7 +917,7 @@ SQL_CONTEXT = {
                   with source_date as (
                       select 
                          DEVICE_PK, DEVICE_HASHDIFF,
-                         timestamp, device_id, device_ip_addr,
+                         timerequest, device_id, device_ip_addr,
                          byte_send, byte_recive,
                          EFFECTIVE_FROM,
                          LOAD_DATE, RECORD_SOURCE
@@ -926,7 +926,7 @@ SQL_CONTEXT = {
                    update_records as (
                       select
                          a.DEVICE_PK, a.DEVICE_HASHDIFF,
-                         a.timestamp, a.device_id, e.device_ip_addr,
+                         a.timerequest, a.device_id, e.device_ip_addr,
                          a.byte_send, a.byte_recive,
                          a.EFFECTIVE_FROM,
                          a.LOAD_DATE, a.RECORD_SOURCE 
@@ -949,7 +949,7 @@ SQL_CONTEXT = {
                    records_to_insert as (
                       select distinct
                          e.DEVICE_PK, e.DEVICE_HASHDIFF,
-                         e.timestamp, e.device_id, e.device_ip_addr,
+                         e.timerequest, e.device_id, e.device_ip_addr,
                          e.bytes_sent, e.bytes_recive,
                          e.EFFECTIVE_FROM,
                          e.LOAD_DATE, e.RECORD_SOURCE
@@ -961,14 +961,14 @@ SQL_CONTEXT = {
                     )
                     insert into aermokhin.dds_fp_sat_device_details (
                         DEVICE_PK, DEVICE_HASHDIFF,
-                        timestamp, device_id, device_ip_addr,
+                        timerequest, device_id, device_ip_addr,
                         bytes_sent, bytes_recive,
                         EFFECTIVE_FROM,
                         LOAD_DATE, RECORD_SOURCE)
                     (
                         select
                            DEVICE_PK, DEVICE_HASHDIFF,
-                           timestamp, device_id, device_ip_addr,
+                           timerequest, device_id, device_ip_addr,
                            bytes_sent, bytes_recive,
                            EFFECTIVE_FROM,
                            LOAD_DATE, RECORD_SOURCE
