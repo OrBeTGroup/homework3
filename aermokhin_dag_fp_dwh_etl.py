@@ -145,18 +145,23 @@ SQL_CONTEXT = {
                   coalesce(nullif(upper(trim(cast(user_id as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(service as varchar))), ''), '^^')
                 ), '^^||^^')) as TEXT) as USER_SERVICE_PK,
-               cast(md5(nullif(concat_ws('||',
+                cast(md5(nullif(concat_ws('||',
+                  coalesce(nullif(upper(trim(cast(user_id as varchar))), ''), '^^'),
+                  coalesce(nullif(upper(trim(cast(service as varchar))), ''), '^^'),
+                  coalesce(nullif(upper(trim(cast(billing_period as varchar))), ''), '^^')
+                ), '^^||^^')) as TEXT) as USER_SERVICE_BILLING_PERIOD_PK,
+                cast(md5(nullif(concat_ws('||',
                   coalesce(nullif(upper(trim(cast(service as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(tariff as varchar))), ''), '^^')
-                ), '^^||^^')) as TEXT) as SERVICE_TARIFF_PK,
-               cast(md5(nullif(concat_ws('||',
+                 ), '^^||^^')) as TEXT) as SERVICE_TARIFF_PK,
+                cast(md5(nullif(concat_ws('||',
                   coalesce(nullif(upper(trim(cast(user_id as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(service as varchar))), ''), '^^')
-                ), '^^||^^||^^||^^')) as TEXT) as SERVICE_HASHDIFF_PK,
-               cast(md5(nullif(concat_ws('||',
+                 ), '^^||^^||^^||^^')) as TEXT) as SERVICE_HASHDIFF_PK,
+                cast(md5(nullif(concat_ws('||',
                   coalesce(nullif(upper(trim(cast(tariff as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(service as varchar))), ''), '^^')
-                ), '^^||^^||^^||^^')) as TEXT) as TARIFF_HASHDIFF_PK
+                 ), '^^||^^||^^||^^')) as TEXT) as TARIFF_HASHDIFF_PK
              from derived_columns                                
             ),
             columns_to_select as (
@@ -177,6 +182,7 @@ SQL_CONTEXT = {
                 SERVICE_PK,
                 TARIFF_PK,
                 USER_SERVICE_PK,
+                USER_SERVICE_BILLING_PERIOD_PK,
                 SERVICE_TARIFF_PK,
                 SERVICE_HASHDIFF_PK,
                 TARIFF_HASHDIFF_PK
