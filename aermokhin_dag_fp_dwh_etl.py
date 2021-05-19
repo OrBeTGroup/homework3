@@ -602,7 +602,7 @@ SQL_CONTEXT = {
                          stg.USER_PK, 
                          stg.SERVICE_PK, 
                          stg.LOAD_DATE, stg.RECORD_SOURCE
-                      from aermokhin.fp_view_issue_{{ execution_date.year }} as stg
+                      from aermokhin.fp_view_billing_{{ execution_date.year }} as stg
                       left join aermokhin.dds_fp_link_user_service as tgt
                       on stg.USER_SERVICE_PK = tgt.USER_SERVICE_PK
                       where tgt.USER_SERVICE_PK is null
