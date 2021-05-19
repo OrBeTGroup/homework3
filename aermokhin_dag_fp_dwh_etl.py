@@ -157,7 +157,7 @@ SQL_CONTEXT = {
                cast(md5(nullif(concat_ws('||',
                   coalesce(nullif(upper(trim(cast(tariff as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(service as varchar))), ''), '^^')
-                ), '^^||^^||^^||^^')) as TEXT) as TARIFF_HASHDIFF_PK,
+                ), '^^||^^||^^||^^')) as TEXT) as TARIFF_HASHDIFF_PK
               from derived_columns                                
             ),
             columns_to_select as (
@@ -244,7 +244,7 @@ SQL_CONTEXT = {
                   coalesce(nullif(upper(trim(cast(user_id as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(start_time as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(service as varchar))), ''), '^^')
-                ), '^^||^^||^^||^^')) as TEXT) as ISSUE_HASDIFF_PK,               
+                ), '^^||^^||^^||^^')) as TEXT) as ISSUE_HASDIFF_PK               
               from derived_columns                                
             ),
             columns_to_select as (
@@ -319,7 +319,7 @@ SQL_CONTEXT = {
                   coalesce(nullif(upper(trim(cast(user_id as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(device_id as varchar))), ''), '^^'),
                   coalesce(nullif(upper(trim(cast(device_ip_addr as varchar))), ''), '^^')
-                ), '^^||^^||^^||^^')) as TEXT) as DEVICE_HASHDIFF_PK,               
+                ), '^^||^^||^^||^^')) as TEXT) as DEVICE_HASHDIFF_PK               
               from derived_columns                                
             ),
             columns_to_select as (
