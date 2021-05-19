@@ -523,7 +523,7 @@ SQL_CONTEXT = {
            'HUB_SERVICE': """
                    with row_rank_1 as (
                         select * from (
-                               select SERVICE_PK, SERVICE_KEY, LOAD_DATE, RECORD_SOURCE, create_at,
+                               select SERVICE_PK, SERVICE_KEY, LOAD_DATE, RECORD_SOURCE, created_at,
                                   row_number() over (
                                      partition by USER_PK
                                      order by LOAD_DATE ASC
