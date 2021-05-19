@@ -178,7 +178,7 @@ SQL_CONTEXT = {
                 SERVICE_PK,
                 TARIFF_PK,
                 USER_SERVICE_PK,
-                SERVICE_TARIFF_PK
+                SERVICE_TARIFF_PK,
                 SERVICE_HASHDIFF_PK,
                 TARIFF_HASHDIFF_PK
               from hashed_columns
