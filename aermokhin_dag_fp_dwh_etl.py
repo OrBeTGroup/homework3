@@ -12,7 +12,7 @@ SQL_CONTEXT = {
                 drop view if exists aermokhin.fp_view_payment_{{ execution_date.year }}
                 drop view if exists aermokhin.fp_view_billing_{{ execution_date.year }}
                 drop view if exists aermokhin.fp_view_issue_{{ execution_date.year }}
-                drop view if exists aermokhin.fp_view_traffic_{{ execution_date.year }}
+                drop view if exists aermokhin.fp_view_traffic_{{ execution_date.year }};
             """
 }
 
