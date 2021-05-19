@@ -288,7 +288,7 @@ SQL_CONTEXT = {
                 device_id,
                 device_ip_addr,
                 bytes_sent,
-                bytes_recived,
+                bytes_received,
                 user_id::varchar as USER_KEY,
                 timerequest::varchar as TIMEREQUEST_KEY,
                 device_id::varchar as DEVICE_ID_KEY,
@@ -303,7 +303,7 @@ SQL_CONTEXT = {
                 device_id,
                 device_ip_addr,
                 bytes_sent,
-                bytes_recived,
+                bytes_received,
                 USER_KEY,
                 TIMEREQUEST_KEY,
                 DEVICE_KEY,
@@ -329,7 +329,7 @@ SQL_CONTEXT = {
                 device_id,
                 device_ip_addr,
                 bytes_sent,
-                bytes_recived,
+                bytes_received,
                 USER_KEY,
                 TIMEREQUEST_KEY,
                 DEVICE_KEY,
@@ -918,7 +918,7 @@ SQL_CONTEXT = {
                       select 
                          DEVICE_PK, DEVICE_HASHDIFF,
                          timerequest, device_id, device_ip_addr,
-                         bytes_send, bytes_recived,
+                         bytes_send, bytes_received,
                          EFFECTIVE_FROM,
                          LOAD_DATE, RECORD_SOURCE
                       from aermokhin.fp_view_traffic_{{ execution_date.year }}
@@ -927,7 +927,7 @@ SQL_CONTEXT = {
                       select
                          a.DEVICE_PK, a.DEVICE_HASHDIFF,
                          a.timerequest, a.device_id, e.device_ip_addr,
-                         a.bytes_send, a.bytes_recived,
+                         a.bytes_send, a.bytes_received,
                          a.EFFECTIVE_FROM,
                          a.LOAD_DATE, a.RECORD_SOURCE 
                       from aermokhin.dds_fp_sat_device_details as a
@@ -950,7 +950,7 @@ SQL_CONTEXT = {
                       select distinct
                          e.DEVICE_PK, e.DEVICE_HASHDIFF,
                          e.timerequest, e.device_id, e.device_ip_addr,
-                         e.bytes_sent, e.bytes_recived,
+                         e.bytes_sent, e.bytes_received,
                          e.EFFECTIVE_FROM,
                          e.LOAD_DATE, e.RECORD_SOURCE
                       from source_date as e
@@ -962,14 +962,14 @@ SQL_CONTEXT = {
                     insert into aermokhin.dds_fp_sat_device_details (
                         DEVICE_PK, DEVICE_HASHDIFF,
                         timerequest, device_id, device_ip_addr,
-                        bytes_sent, bytes_recived,
+                        bytes_sent, bytes_received,
                         EFFECTIVE_FROM,
                         LOAD_DATE, RECORD_SOURCE)
                     (
                         select
                            DEVICE_PK, DEVICE_HASHDIFF,
                            timerequest, device_id, device_ip_addr,
-                           bytes_sent, bytes_recived,
+                           bytes_sent, bytes_received,
                            EFFECTIVE_FROM,
                            LOAD_DATE, RECORD_SOURCE
                         from records_to_insert
