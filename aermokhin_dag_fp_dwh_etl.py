@@ -28,7 +28,7 @@ default_args = {
 }
 
 dag = DAG(
-    USERNAME + '_drop',
+    USERNAME + '_drop1',
     default_args=default_args,
     description='drop view_tmp',
     schedule_interval="0 0 1 1 *",
