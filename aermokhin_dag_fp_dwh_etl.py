@@ -291,7 +291,7 @@ SQL_CONTEXT = {
                 bytes_received,
                 user_id::varchar as USER_KEY,
                 timerequest::varchar as TIMEREQUEST_KEY,
-                device_id::varchar as DEVICE_ID_KEY,
+                device_id::varchar as DEVICE_KEY,
                 'traffic - GCS'::varchar as RECORD_SOURCE
               from aermokhin.ods_fp_traffic
               where cast(extract('year' from cast(timerequest as timestamp)) as int) = {{ execution_date.year }}
