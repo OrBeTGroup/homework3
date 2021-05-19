@@ -720,7 +720,7 @@ SQL_CONTEXT = {
            'SAT_SERVICE_DETAILS': """
                   with source_date as (
                       select 
-                         SERVICE_PK, SERVICE_HASHDIFF,
+                         SERVICE_PK, SERVICE_HASHDIFF_PK,
                          created_at,
                          billing_sum,
                          EFFECTIVE_FROM,
@@ -729,7 +729,7 @@ SQL_CONTEXT = {
                    ),
                    update_records as (
                       select
-                         a.SERVICE_PK, a.SERVICE_HASHDIFF,
+                         a.SERVICE_PK, a.SERVICE_HASHDIFF_PK,
                          a.created_at,
                          a.billing_sum,
                          a.EFFECTIVE_FROM,
@@ -741,7 +741,7 @@ SQL_CONTEXT = {
                    ),
                    latest_records as (
                       select * from (
-                         select SERVICE_PK, SERVICE_HASHDIFF, LOAD_DATE,
+                         select SERVICE_PK, SERVICE_HASHDIFF_PK, LOAD_DATE,
                             case when rank() over (partition by SERVICE_PK order by LOAD_DATE desc) = 1
                                  then 'Y'
                                  else 'N'
@@ -752,25 +752,25 @@ SQL_CONTEXT = {
                    ),
                    records_to_insert as (
                       select distinct
-                         e.SERVICE_PK, e.SERVICE_HASHDIFF,
+                         e.SERVICE_PK, e.SERVICE_HASHDIFF_PK,
                          e.created_at,
                          e.billing_sum,
                          e.EFFECTIVE_FROM,
                          e.LOAD_DATE, e.RECORD_SOURCE
                       from source_date as e
                       left join latest_records
-                      on latest_records.SERVICE_HASHDIFF = e.SERVICE_HASHDIFF and
+                      on latest_records.SERVICE_HASHDIFF_PK = e.SERVICE_HASHDIFF_PK and
                          latest_records.SERVICE_PK = e.SERVICE_PK
                       where latest_records.SERVICE_HASHDIFF is null
                     )
                     insert into aermokhin.dds_fp_sat_service_details (
-                        SERVICE_PK, SERVICE_HASHDIFF,
+                        SERVICE_PK, SERVICE_HASHDIFF_PK,
                         created_at, billing_sum,
                         EFFECTIVE_FROM,
                         LOAD_DATE, RECORD_SOURCE)
                     (
                         select
-                           SERVICE_PK, SERVICE_HASHDIFF,
+                           SERVICE_PK, SERVICE_HASHDIFF_PK,
                            created_at, billing_sum,
                            EFFECTIVE_FROM,
                            LOAD_DATE, RECORD_SOURCE
@@ -780,7 +780,7 @@ SQL_CONTEXT = {
             'SAT_ISSUE_DETAILS': """
                   with source_date as (
                       select 
-                         ISSUE_PK, ISSUE_HASHDIFF,
+                         ISSUE_PK, ISSUE_HASHDIFF_PK,
                          START_TIME, TITLE, DESCRIPTION,
                          EFFECTIVE_FROM,
                          LOAD_DATE, RECORD_SOURCE
@@ -788,7 +788,7 @@ SQL_CONTEXT = {
                    ),
                    update_records as (
                       select
-                         a.ISSUE_PK, a.ISSUE_HASHDIFF,
+                         a.ISSUE_PK, a.ISSUE_HASHDIFF_PK,
                          a.START_TIME, a.TITLE, a.DESCRIPTION,
                          a.EFFECTIVE_FROM,
                          a.LOAD_DATE, a.RECORD_SOURCE 
@@ -799,7 +799,7 @@ SQL_CONTEXT = {
                    ),
                    latest_records as (
                       select * from (
-                         select ISSUE_PK, ISSUE_HASHDIFF, LOAD_DATE,
+                         select ISSUE_PK, ISSUE_HASHDIFF_PK, LOAD_DATE,
                             case when rank() over (partition by ISSUE_PK order by LOAD_DATE desc) = 1
                                  then 'Y'
                                  else 'N'
@@ -810,24 +810,24 @@ SQL_CONTEXT = {
                    ),
                    records_to_insert as (
                       select distinct
-                         e.ISSUE_PK, e.ISSUE_HASHDIFF,
+                         e.ISSUE_PK, e.ISSUE_HASHDIFF_PK,
                          e.START_TIME, e.TITLE, e.DESCRIPTION,
                          e.EFFECTIVE_FROM,
                          e.LOAD_DATE, e.RECORD_SOURCE
                       from source_date as e
                       left join latest_records
-                      on latest_records.ISSUE_HASHDIFF = e.ISSUE_HASHDIFF and
+                      on latest_records.ISSUE_HASHDIFF_PK = e.ISSUE_HASHDIFF_PK and
                          latest_records.ISSUE_PK = e.ISSUE_PK
-                      where latest_records.ISSUE_HASHDIFF is null
+                      where latest_records.ISSUE_HASHDIFF_PK is null
                     )
                     insert into aermokhin.dds_fp_sat_issue_details (
-                        ISSUE_PK, ISSUE_HASHDIFF,
+                        ISSUE_PK, ISSUE_HASHDIFF_PK,
                         START_TIME, TITLE, DESCRIPTION,
                         EFFECTIVE_FROM,
                         LOAD_DATE, RECORD_SOURCE)
                     (
                         select
-                           ISSUE_PK, ISSUE_HASHDIFF,
+                           ISSUE_PK, ISSUE_HASHDIFF_PK,
                            START_TIME, TITLE, DESCRIPTION,
                            EFFECTIVE_FROM,
                            LOAD_DATE, RECORD_SOURCE
@@ -838,7 +838,7 @@ SQL_CONTEXT = {
             'SAT_TARIFF_DETAILS': """
                   with source_date as (
                       select 
-                         TARIFF_PK, TARIFF_HASHDIFF,
+                         TARIFF_PK, TARIFF_HASHDIFF_PK,
                          created_at, tariff,
                          EFFECTIVE_FROM,
                          LOAD_DATE, RECORD_SOURCE
@@ -846,7 +846,7 @@ SQL_CONTEXT = {
                    ),
                    update_records as (
                       select
-                         a.TARIFF_PK, a.TARIFF_HASHDIFF,
+                         a.TARIFF_PK, a.TARIFF_HASHDIFF_PK,
                          a.created_at, a.tariff,
                          a.EFFECTIVE_FROM,
                          a.LOAD_DATE, a.RECORD_SOURCE 
@@ -857,7 +857,7 @@ SQL_CONTEXT = {
                    ),
                    latest_records as (
                       select * from (
-                         select TARIFF_PK, TARIFF_HASHDIFF, LOAD_DATE,
+                         select TARIFF_PK, TARIFF_HASHDIFF_PK, LOAD_DATE,
                             case when rank() over (partition by TARIFF_PK order by LOAD_DATE desc) = 1
                                  then 'Y'
                                  else 'N'
@@ -868,24 +868,24 @@ SQL_CONTEXT = {
                    ),
                    records_to_insert as (
                       select distinct
-                         e.TARIFF_PK, e.TARIFF_HASHDIFF,
+                         e.TARIFF_PK, e.TARIFF_HASHDIFF_PK,
                          e.created_at, e.tariff,
                          e.EFFECTIVE_FROM,
                          e.LOAD_DATE, e.RECORD_SOURCE
                       from source_date as e
                       left join latest_records
-                      on latest_records.TARIFF_HASHDIFF = e.TARIFF_HASHDIFF and
+                      on latest_records.TARIFF_HASHDIFF_PK = e.TARIFF_HASHDIFF_PK and
                          latest_records.TARIFF_PK = e.TARIFF_PK
-                      where latest_records.TARIFF_HASHDIFF is null
+                      where latest_records.TARIFF_HASHDIFF_PK is null
                     )
                     insert into aermokhin.dds_fp_sat_tariff_details (
-                        TARIFF_PK, TARIFF_HASHDIFF,
+                        TARIFF_PK, TARIFF_HASHDIFF_PK,
                         created_at, tariff,
                         EFFECTIVE_FROM,
                         LOAD_DATE, RECORD_SOURCE)
                     (
                         select
-                           TARIFF_PK, TARIFF_HASHDIFF,
+                           TARIFF_PK, TARIFF_HASHDIFF_PK,
                            created_at, tariff,
                            EFFECTIVE_FROM,
                            LOAD_DATE, RECORD_SOURCE
@@ -895,7 +895,7 @@ SQL_CONTEXT = {
            'SAT_DEVICE_DETAILS': """
                   with source_date as (
                       select 
-                         DEVICE_PK, DEVICE_HASHDIFF,
+                         DEVICE_PK, DEVICE_HASHDIFF_PK,
                          timerequest, device_id, device_ip_addr,
                          bytes_send, bytes_received,
                          EFFECTIVE_FROM,
@@ -904,7 +904,7 @@ SQL_CONTEXT = {
                    ),
                    update_records as (
                       select
-                         a.DEVICE_PK, a.DEVICE_HASHDIFF,
+                         a.DEVICE_PK, a.DEVICE_HASHDIFF_PK,
                          a.timerequest, a.device_id, e.device_ip_addr,
                          a.bytes_send, a.bytes_received,
                          a.EFFECTIVE_FROM,
@@ -916,7 +916,7 @@ SQL_CONTEXT = {
                    ),
                    latest_records as (
                       select * from (
-                         select DEVICE_PK, DEVICE_HASHDIFF, LOAD_DATE,
+                         select DEVICE_PK, DEVICE_HASHDIFF_PK, LOAD_DATE,
                             case when rank() over (partition by DEVICE_PK order by LOAD_DATE desc) = 1
                                  then 'Y'
                                  else 'N'
@@ -927,26 +927,26 @@ SQL_CONTEXT = {
                    ),
                    records_to_insert as (
                       select distinct
-                         e.DEVICE_PK, e.DEVICE_HASHDIFF,
+                         e.DEVICE_PK, e.DEVICE_HASHDIFF_PK,
                          e.timerequest, e.device_id, e.device_ip_addr,
                          e.bytes_sent, e.bytes_received,
                          e.EFFECTIVE_FROM,
                          e.LOAD_DATE, e.RECORD_SOURCE
                       from source_date as e
                       left join latest_records
-                      on latest_records.DEVICE_HASHDIFF = e.DEVICE_HASHDIFF and
+                      on latest_records.DEVICE_HASHDIFF_PK = e.DEVICE_HASHDIFF_PK and
                          latest_records.DEVICE_PK = e.DEVICE_PK
                       where latest_records.DEVICE_HASHDIFF is null
                     )
                     insert into aermokhin.dds_fp_sat_device_details (
-                        DEVICE_PK, DEVICE_HASHDIFF,
+                        DEVICE_PK, DEVICE_HASHDIFF_PK,
                         timerequest, device_id, device_ip_addr,
                         bytes_sent, bytes_received,
                         EFFECTIVE_FROM,
                         LOAD_DATE, RECORD_SOURCE)
                     (
                         select
-                           DEVICE_PK, DEVICE_HASHDIFF,
+                           DEVICE_PK, DEVICE_HASHDIFF_PK,
                            timerequest, device_id, device_ip_addr,
                            bytes_sent, bytes_received,
                            EFFECTIVE_FROM,
