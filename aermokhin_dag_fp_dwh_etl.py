@@ -621,30 +621,7 @@ SQL_CONTEXT = {
                      from records_to_insert
                    );
            """,
-           'LINKS_USER_SERVICE': """
-                  with records_to_insert as (
-                      select distinct
-                         stg.USER_SERVICE_PK,
-                         stg.USER_PK, 
-                         stg.SERVICE_PK, 
-                         stg.LOAD_DATE, stg.RECORD_SOURCE
-                      from aermokhin.fp_view_issue_{{ execution_date.year }} as stg
-                      left join aermokhin.dds_fp_link_user_service as tgt
-                      on stg.USER_SERVICE_PK = tgt.USER_SERVICE_PK
-                      where tgt.USER_SERVICE_PK is null
-                  )
-                  insert into aermokhin.dds_fp_link_user_service (
-                     USER_SERVICE_PK,
-                     USER_PK, SERVICE_PK,
-                     LOAD_DATE, RECORD_SOURCE)
-                  (
-                     select
-                         USER_SERVICE_PK,
-                         USER_PK, SERVICE_PK,
-                         LOAD_DATE, RECORD_SOURCE
-                     from records_to_insert
-                   );
-           """,
+           
            'LINKS_SERVICE_TARIFF': """
                   with records_to_insert as (
                       select distinct
