@@ -536,7 +536,7 @@ SQL_CONTEXT = {
                          from row_rank_1 as a
                          left join aermokhin.dds_fp_hub_service as d
                               on a.SERVICE_PK = d.SERVICE_PK
-                         where d.USER_PK is NULL
+                         where d.SERVICE_PK is NULL
                     )
                     insert into aermokhin.dds_fp_hub_service (USER_PK, USER_KEY, LOAD_DATE, RECORD_SOURCE)
                     (
