@@ -1156,4 +1156,4 @@ drop_view_one_year = PostgresOperator(
     sql=SQL_CONTEXT['DROP_VIEW_ONE_YEAR']
 )
 
-view_one_year >> hubs >> all_hubs_loaded >> links >> all_links_loaded >> satellites >> drop_view_one_year
+view_one_year >> hubs >> all_hubs_loaded >> links >> all_links_loaded >> satellites >> all_satellites_loaded >> drop_view_one_year
