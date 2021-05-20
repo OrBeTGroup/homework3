@@ -905,7 +905,7 @@ SQL_CONTEXT = {
                    update_records as (
                       select
                          a.DEVICE_PK, a.DEVICE_HASHDIFF,
-                         a.timerequest, a.device_id, e.device_ip_addr,
+                         a.timerequest, a.device_id, a.device_ip_addr,
                          a.bytes_sent, a.bytes_received,
                          a.EFFECTIVE_FROM,
                          a.LOAD_DATE, a.RECORD_SOURCE 
