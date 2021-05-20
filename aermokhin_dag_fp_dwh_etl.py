@@ -20,7 +20,7 @@ SQL_CONTEXT = {
                 phone,
                 billing_period,
                 pay_date,
-                sum,
+                sum as payment_sum,
                 user_id::varchar as USER_KEY,
                 account::varchar as ACCOUNT_KEY,
                 billing_period::varchar as BILLING_PERIOD_KEY,
@@ -39,7 +39,7 @@ SQL_CONTEXT = {
                 phone,
                 billing_period,
                 pay_date,
-                sum,
+                payment_sum,
                 USER_KEY,
                 ACCOUNT_KEY,
                 BILLING_PERIOD_KEY,
@@ -68,7 +68,7 @@ SQL_CONTEXT = {
                 )) as TEXT) as USER_HASHDIFF, 
                 cast(md5(concat_ws('||',
                   coalesce(nullif(upper(trim(cast(pay_date as varchar))), ''), '^^'),
-                  coalesce(nullif(upper(trim(cast(sum as varchar))), ''), '^^')
+                  coalesce(nullif(upper(trim(cast(payment_sum as varchar))), ''), '^^')
                 )) as TEXT) as PAY_DOC_HASHDIFF
               from derived_columns                                
             ),
@@ -81,7 +81,7 @@ SQL_CONTEXT = {
                 phone,
                 billing_period,
                 pay_date,
-                sum,
+                payment_sum,
                 USER_KEY,
                 ACCOUNT_KEY,
                 BILLING_PERIOD_KEY,
@@ -1017,7 +1017,7 @@ SQL_CONTEXT = {
                   with source_date as (
                       select 
                          PAY_DOC_PK, PAY_DOC_HASHDIFF,
-                         pay_date, sum,
+                         pay_date, payment_sum,
                          EFFECTIVE_FROM,
                          LOAD_DATE, RECORD_SOURCE
                       from aermokhin.fp_view_payment_{{ execution_date.year }}
@@ -1025,7 +1025,7 @@ SQL_CONTEXT = {
                    update_records as (
                       select
                          a.PAY_DOC_PK, a.PAY_DOC_HASHDIFF,
-                         a.pay_date, a.sum,
+                         a.pay_date, a.payment_sum,
                          a.EFFECTIVE_FROM,
                          a.LOAD_DATE, a.RECORD_SOURCE 
                       from aermokhin.dds_fp_sat_pay_doc_details as a
@@ -1047,7 +1047,7 @@ SQL_CONTEXT = {
                    records_to_insert as (
                       select distinct
                          e.PAY_DOC_PK, e.PAY_DOC_HASHDIFF,
-                         e.pay_date, e.sum,
+                         e.pay_date, e.payment_sum,
                          e.EFFECTIVE_FROM,
                          e.LOAD_DATE, e.RECORD_SOURCE
                       from source_date as e
@@ -1058,13 +1058,13 @@ SQL_CONTEXT = {
                     )
                     insert into aermokhin.dds_fp_sat_pay_doc_details (
                         PAY_DOC_PK, PAY_DOC_HASHDIFF,
-                        pay_date, sum,
+                        pay_date, payment_sum,
                         EFFECTIVE_FROM,
                         LOAD_DATE, RECORD_SOURCE)
                     (
                         select
                            PAY_DOC_PK, PAY_DOC_HASHDIFF,
-                           pay_date, sum,
+                           pay_date, payment_sum,
                            EFFECTIVE_FROM,
                            LOAD_DATE, RECORD_SOURCE
                         from records_to_insert
