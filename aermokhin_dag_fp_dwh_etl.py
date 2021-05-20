@@ -897,7 +897,7 @@ SQL_CONTEXT = {
                       select 
                          DEVICE_PK, DEVICE_HASHDIFF,
                          timerequest, device_id, device_ip_addr,
-                         bytes_send, bytes_received,
+                         bytes_sent, bytes_received,
                          EFFECTIVE_FROM,
                          LOAD_DATE, RECORD_SOURCE
                       from aermokhin.fp_view_traffic_{{ execution_date.year }}
@@ -906,7 +906,7 @@ SQL_CONTEXT = {
                       select
                          a.DEVICE_PK, a.DEVICE_HASHDIFF,
                          a.timerequest, a.device_id, e.device_ip_addr,
-                         a.bytes_send, a.bytes_received,
+                         a.bytes_sent, a.bytes_received,
                          a.EFFECTIVE_FROM,
                          a.LOAD_DATE, a.RECORD_SOURCE 
                       from aermokhin.dds_fp_sat_device_details as a
